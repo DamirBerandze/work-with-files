@@ -1,0 +1,95 @@
+//Задача: посчитать количество "троек" в последовательности. Тройки - это последовательность одинаковых букв длинной в три символа.
+//Вход: последовательность состоящая из букв a,b,c.
+//Выход: Количество триад каждого символа в последовательноси
+/*Указание: программа должна иметь режимы: проверки, автоматической генерации последовательности.
+            Последовательность должна состоять из символов a,b,c.*/
+
+#include <conio.h>
+#include <stdio.h>
+#include <windows.h>
+
+void counting(char k);//счетчик
+
+char choise;
+int bigsumA = 0;//кол-во триад буквы a
+int bigsumB = 0;//b
+int bigsumC = 0;//c
+
+int sumA = 0;
+int sumB = 0;
+int sumC = 0;
+
+main()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	
+	printf("Введите '1' чтобы перейти в Debug режим.\n");
+	Sleep(1000);
+	printf("Нажмите Enter для случайной генерации.\n");
+	scanf("%c", &choise);
+	printf("----------------------------------------------\n");
+	
+	if(choise != '1')
+	{
+		char k;
+		while(!kbhit())
+		{
+			k = 97 + rand() % 3;
+			putchar(k);
+			counting(k);
+		}
+	}
+	else
+	{
+		printf("Debug режим.\n");
+		Sleep(800);
+		printf("Введите последовательность: ");
+		
+		int a = 200;
+		char string[a];
+		scanf("%s",string);
+		for(int i = 0; i < a ; i++)		counting(*(string + i));
+	}
+	
+	printf("\na:%i\nb:%i\nc:%i\n",bigsumA ,bigsumB, bigsumC);
+	
+	system("pause");
+	return 0;
+}
+
+void counting(char k)
+{
+	if(k == 'a')
+	{
+		sumA++;
+		if(sumA == 3)
+		{
+			bigsumA ++;
+			sumA = 0;
+		}	
+	}
+	else	sumA = 0;
+	
+	if(k == 'b')
+	{
+		sumB++;
+		if(sumB == 3)
+		{
+			bigsumB++;
+			sumB = 0;
+		}
+	}
+	else	sumB = 0;
+	
+	if(k == 'c')
+	{
+		sumC++;
+		if(sumC == 3)
+		{
+			bigsumC ++;
+			sumC = 0;
+		}
+	}
+	else	sumC = 0;
+}
