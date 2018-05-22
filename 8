@@ -1,0 +1,20 @@
+//Задача:создать копию файла.
+
+#include <stdio.h>
+
+main()
+{
+	FILE *file_in = fopen("old file for 1.1.txt","r");
+	
+	char data_of_file_in[1000];
+	fscanf(file_in,"%s",data_of_file_in);
+	short int i = 0;
+	while(*(data_of_file_in + i) != EOF)	i++;
+	fclose(file_in);
+	
+	FILE *file_out = fopen("new file for 1.1 copy.txt","w");
+	for(short int j = 0; j < i; j++)	fputc(*(data_of_file_in + j),file_out);
+	
+	
+	return 0;
+}
