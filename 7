@@ -1,0 +1,21 @@
+//Задача: создать файл компонентами которого будут являться элементы массива, преписать чётные элементы в другой файл.
+//        Произвести чтение второго файла.
+
+#include <stdio.h>
+
+main()
+{
+	FILE *file_in = fopen("old file for 1.1.txt","r");
+	
+	char data_of_file_in[1000];
+	fscanf(file_in,"%s",data_of_file_in);
+	short int i = 0;
+	while(*(data_of_file_in + i) != EOF)	i++;
+	fclose(file_in);
+	
+	FILE *file_out = fopen("new file for 1.7.txt","w");
+	for(short int j = 0; j < i; j+=2)	fputc(*(data_of_file_in + j),file_out);
+	
+	
+	return 0;
+}
